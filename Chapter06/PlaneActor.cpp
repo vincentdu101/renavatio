@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
-// From Game Programming in C++ by Sanjay Madhav
-// Copyright (C) 2017 Sanjay Madhav. All rights reserved.
-// 
-// Released under the BSD License
-// See LICENSE in root directory for full details.
-// ----------------------------------------------------------------
+//
+//  PlaneActor.cpp
+//  Game-mac
+//
+//  Created by Vincent Du on 2/16/20.
+//  Copyright © 2020 Sanjay Madhav. All rights reserved.
+//
 
 #include "PlaneActor.h"
 #include "Game.h"
@@ -12,9 +12,9 @@
 #include "MeshComponent.h"
 
 PlaneActor::PlaneActor(Game* game)
-	:Actor(game)
+    :Actor(game)
 {
-	SetScale(10.0f);
-	MeshComponent* mc = new MeshComponent(this);
-	mc->SetMesh(GetGame()->GetRenderer()->GetMesh("Assets/Plane.gpmesh"));
+    SetScale(10.0f);
+    MeshComponent* mc = new MeshComponent(this);
+    mc -> SetMesh(GetGame() -> GetRenderer() -> GetMesh("Assets/Plane.gpmesh"));
 }

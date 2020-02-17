@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
-// From Game Programming in C++ by Sanjay Madhav
-// Copyright (C) 2017 Sanjay Madhav. All rights reserved.
-// 
-// Released under the BSD License
-// See LICENSE in root directory for full details.
-// ----------------------------------------------------------------
+//
+//  MeshComponent.cpp
+//  Game-mac
+//
+//  Created by Vincent Du on 2/16/20.
+//  Copyright © 2020 Sanjay Madhav. All rights reserved.
+//
 
 #include "MeshComponent.h"
 #include "Shader.h"
@@ -16,37 +16,41 @@
 #include "VertexArray.h"
 
 MeshComponent::MeshComponent(Actor* owner)
-	:Component(owner)
-	,mMesh(nullptr)
-	,mTextureIndex(0)
+    :Component(owner)
+    ,mMesh(nullptr)
+    ,mTextureIndex(0)
 {
-	mOwner->GetGame()->GetRenderer()->AddMeshComp(this);
+    mOwner -> GetGame() -> GetRenderer() -> AddMeshComp(this);
 }
 
 MeshComponent::~MeshComponent()
 {
-	mOwner->GetGame()->GetRenderer()->RemoveMeshComp(this);
+    mOwner -> GetGame() -> GetRenderer() -> RemoveMeshComp(this);
 }
 
 void MeshComponent::Draw(Shader* shader)
 {
-	if (mMesh)
-	{
-		// Set the world transform
-		shader->SetMatrixUniform("uWorldTransform", 
-			mOwner->GetWorldTransform());
-		// Set specular power
-		shader->SetFloatUniform("uSpecPower", mMesh->GetSpecPower());
-		// Set the active texture
-		Texture* t = mMesh->GetTexture(mTextureIndex);
-		if (t)
-		{
-			t->SetActive();
-		}
-		// Set the mesh's vertex array as active
-		VertexArray* va = mMesh->GetVertexArray();
-		va->SetActive();
-		// Draw
-		glDrawElements(GL_TRIANGLES, va->GetNumIndices(), GL_UNSIGNED_INT, nullptr);
-	}
+    if (mMesh)
+    {
+        // set the world transform
+        shader -> SetMatrixUniform("uWorldTransform",
+                                   mOwner -> GetWorldTransform());
+        
+        // set specular power
+        shader -> SetFloatUniform("uSpecPower", mMesh -> GetSpecPower());
+        
+        // set the active texture
+        Texture* t = mMesh -> GetTexture(mTextureIndex);
+        
+        if (t)
+        {
+            t -> SetActive();
+        }
+        
+        // set the mesh's vertex array as active
+        VertexArray* va = mMesh -> GetVertexArray();
+        va -> SetActive();
+        // draw
+        glDrawElements(GL_TRIANGLES, va -> GetNumIndices(), GL_UNSIGNED_INT, nullptr);
+    }
 }
