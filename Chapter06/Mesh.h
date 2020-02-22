@@ -17,7 +17,7 @@ public:
     ~Mesh();
     
     // load/unload mesh
-    bool load(const std::string& fileName, class Renderer* renderer);
+    bool Load(const std::string& fileName, class Renderer* renderer);
     void Unload();
     
     // get the vertex array associated with this mesh
@@ -50,4 +50,4 @@ private:
     
     // specular power of surface
     float mSpecPower;
-}
+};

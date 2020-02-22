@@ -60,7 +60,7 @@ bool Mesh::Load(const std::string & fileName, Renderer* renderer) {
     
     // load textures
     const rapidjson::Value& textures = doc["textures"];
-    if (!texture.IsArray() || textures.Size() < 1) {
+    if (!textures.IsArray() || textures.Size() < 1) {
         SDL_Log("Mesh %s has no textures, there should be at least one", fileName.c_str());
         return false;
     }
@@ -88,7 +88,7 @@ bool Mesh::Load(const std::string & fileName, Renderer* renderer) {
     
     // load in the vertices
     const rapidjson::Value& vertsJson = doc["vertices"];
-    if (!vertsJson.isArray() || vertsJson.Size() < 1)
+    if (!vertsJson.IsArray() || vertsJson.Size() < 1)
     {
         SDL_Log("Mesh %s has no vertices", fileName.c_str());
         return false;
@@ -126,7 +126,7 @@ bool Mesh::Load(const std::string & fileName, Renderer* renderer) {
         return false;
     }
     
-    std::vector<unsigned_int> indices;
+    std::vector<unsigned int> indices;
     indices.reserve(indJson.Size() * 3);
     for (rapidjson::SizeType i = 0; i < indJson.Size(); i++)
     {
