@@ -17,6 +17,8 @@
 		92D324FB1B697389005A86C7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D324FA1B697389005A86C7 /* CoreFoundation.framework */; };
 		92E46E941B6353E50035CD21 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E46E931B6353E50035CD21 /* OpenGL.framework */; };
 		B3A78D3323FE5A6F0011D3B9 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A78D3223FE5A6F0011D3B9 /* Renderer.cpp */; };
+		B3A78D362405835F0011D3B9 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A78D352405835F0011D3B9 /* Shader.cpp */; };
+		B3A78D3924058B040011D3B9 /* SpriteComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A78D3824058B040011D3B9 /* SpriteComponent.cpp */; };
 		B3BF2B5B23F7C3FF00790C95 /* CameraActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3BF2B5A23F7C3FF00790C95 /* CameraActor.cpp */; };
 		B3BF2B5E23F7C67000790C95 /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3BF2B5D23F7C67000790C95 /* Mesh.cpp */; };
 		B3DF72C523FA7B9300457120 /* MeshComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3DF72C423FA7B9300457120 /* MeshComponent.cpp */; };
@@ -43,6 +45,10 @@
 		92E46E931B6353E50035CD21 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		B3A78D3223FE5A6F0011D3B9 /* Renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
 		B3A78D3423FE5AAE0011D3B9 /* Renderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
+		B3A78D352405835F0011D3B9 /* Shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
+		B3A78D372405836D0011D3B9 /* Shader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
+		B3A78D3824058B040011D3B9 /* SpriteComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SpriteComponent.cpp; sourceTree = "<group>"; };
+		B3A78D3A24058B490011D3B9 /* SpriteComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpriteComponent.h; sourceTree = "<group>"; };
 		B3BF2B5A23F7C3FF00790C95 /* CameraActor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CameraActor.cpp; sourceTree = "<group>"; };
 		B3BF2B5C23F7C41000790C95 /* CameraActor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraActor.h; sourceTree = "<group>"; };
 		B3BF2B5D23F7C67000790C95 /* Mesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
@@ -69,6 +75,10 @@
 		92E46DEE1B634EA30035CD21 = {
 			isa = PBXGroup;
 			children = (
+				B3A78D3A24058B490011D3B9 /* SpriteComponent.h */,
+				B3A78D3824058B040011D3B9 /* SpriteComponent.cpp */,
+				B3A78D372405836D0011D3B9 /* Shader.h */,
+				B3A78D352405835F0011D3B9 /* Shader.cpp */,
 				B3A78D3423FE5AAE0011D3B9 /* Renderer.h */,
 				B3A78D3223FE5A6F0011D3B9 /* Renderer.cpp */,
 				B3DF72C923FA7E0600457120 /* PlaneActor.h */,
@@ -180,6 +190,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3A78D362405835F0011D3B9 /* Shader.cpp in Sources */,
 				B3A78D3323FE5A6F0011D3B9 /* Renderer.cpp in Sources */,
 				B3DF72C523FA7B9300457120 /* MeshComponent.cpp in Sources */,
 				B3BF2B5E23F7C67000790C95 /* Mesh.cpp in Sources */,
@@ -189,6 +200,7 @@
 				9223C4781F009428009A94D7 /* Game.cpp in Sources */,
 				9223C48B1F0CA3CE009A94D7 /* MoveComponent.cpp in Sources */,
 				B3DF72C823FA7DF800457120 /* PlaneActor.cpp in Sources */,
+				B3A78D3924058B040011D3B9 /* SpriteComponent.cpp in Sources */,
 				9223C4791F009428009A94D7 /* Actor.cpp in Sources */,
 				9223C4951F0CA766009A94D7 /* CircleComponent.cpp in Sources */,
 				9223C47C1F009428009A94D7 /* Component.cpp in Sources */,
