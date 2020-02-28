@@ -150,7 +150,7 @@ void Renderer::Draw() {
     // enable alpha blending on the color buffer
     glEnable(GL_BLEND);
     glBlendEquationSeparate(GL_FUNC_ADD, GL_FUNC_ADD);
-    glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ZERO);\
+    glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ZERO);
     
     // set shader/vao as active
     mSpriteShader -> SetActive();
@@ -233,7 +233,7 @@ bool Renderer::LoadShaders() {
     // create sprite shader
     mSpriteShader = new Shader();
     
-    if (!mSpriteShader -> Load("Shaders/Sprite.vert", "Shader/Sprite.frag")) {
+    if (!mSpriteShader -> Load("Shaders/Sprite.vert", "Shaders/Sprite.frag")) {
         return false;
     }
     
