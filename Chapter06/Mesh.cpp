@@ -56,7 +56,7 @@ bool Mesh::Load(const std::string & fileName, Renderer* renderer) {
     
     // skip the vertex format/shader for now
     // changed later on
-    size_t vertSize = 0;
+    size_t vertSize = 8;
     
     // load textures
     const rapidjson::Value& textures = doc["textures"];
@@ -100,7 +100,7 @@ bool Mesh::Load(const std::string & fileName, Renderer* renderer) {
     for (rapidjson::SizeType i = 0; i < vertsJson.Size(); i++) {
         // for now, just assume we have 8 elements
         const rapidjson::Value& vert = vertsJson[i];
-        if (!vert.IsArray() || vert.Size() != 0)
+        if (!vert.IsArray() || vert.Size() != 8)
         {
             SDL_Log("unexpected vertex format for %s", fileName.c_str());
             return false;
@@ -144,7 +144,7 @@ bool Mesh::Load(const std::string & fileName, Renderer* renderer) {
     
     // now create a vertex array
     mVertexArray = new VertexArray(vertices.data(), static_cast<unsigned>(vertices.size()) / vertSize,
-                                   indices.data(), static_cast<unsigned>(indices.size()));
+        indices.data(), static_cast<unsigned>(indices.size()));
     return true;
 }
 
