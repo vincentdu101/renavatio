@@ -15,16 +15,16 @@ VertexArray::VertexArray(const float* verts, unsigned int numVerts,
     ,mNumIndices(numIndices)
 {
     // Create vertex array
-    glGenVertexArrays(1, &mVertexArray);
+    glGenVertexArrays(mVertexObjects, &mVertexArray);
     glBindVertexArray(mVertexArray);
 
     // Create vertex buffer
-    glGenBuffers(1, &mVertexBuffer);
+    glGenBuffers(mVertexObjects, &mVertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, mVertexBuffer);
     glBufferData(GL_ARRAY_BUFFER, numVerts * 8 * sizeof(float), verts, GL_STATIC_DRAW);
 
     // Create index buffer
-    glGenBuffers(1, &mIndexBuffer);
+    glGenBuffers(mVertexObjects, &mIndexBuffer);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIndexBuffer);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, numIndices * sizeof(unsigned int), indices, GL_STATIC_DRAW);
 
@@ -45,9 +45,10 @@ VertexArray::VertexArray(const float* verts, unsigned int numVerts,
 
 VertexArray::~VertexArray()
 {
-    glDeleteBuffers(1, &mVertexBuffer);
-    glDeleteBuffers(1, &mIndexBuffer);
-    glDeleteVertexArrays(1, &mVertexArray);
+    // deleting 1 vertex object because we generated one above
+    glDeleteBuffers(mVertexObjects, &mVertexBuffer);
+    glDeleteBuffers(mVertexObjects, &mIndexBuffer);
+    glDeleteVertexArrays(mVertexObjects, &mVertexArray);
 }
 
 void VertexArray::SetActive()

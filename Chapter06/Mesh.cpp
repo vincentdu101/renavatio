@@ -25,18 +25,23 @@ Mesh::Mesh()
 Mesh::~Mesh() {}
 
 bool Mesh::Load(const std::string & fileName, Renderer* renderer) {
+    // load file name of mesh
     std::ifstream file(fileName);
     
+    // if we can't open it then throw an exception
     if (!file.is_open()) {
         SDL_Log("File not found: Mesh %s", fileName.c_str());
         return false;
     }
     
+    // buffer the file stream
     std::stringstream fileStream;
     fileStream << file.rdbuf();
     std::string contents = fileStream.str();
     rapidjson::StringStream jsonStr(contents.c_str());
     rapidjson::Document doc;
+    
+    // use rapidjson to parse the file stream
     doc.ParseStream(jsonStr);
     
     if (!doc.IsObject()) {

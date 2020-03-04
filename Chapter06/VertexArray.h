@@ -28,5 +28,7 @@ private:
     unsigned int mIndexBuffer;
     // OpenGL ID of the vertex array object
     unsigned int mVertexArray;
+    // number of vertex array object names to manage
+    unsigned int mVertexObjects = 1;
 };
 
