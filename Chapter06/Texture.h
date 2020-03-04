@@ -21,7 +21,6 @@ public:
     
     int GetWidth() const { return mWidth; }
     int GetHeight() const { return mHeight; }
-    
 private:
     unsigned int mTextureID;
     int mWidth;

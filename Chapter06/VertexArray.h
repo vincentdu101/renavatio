@@ -11,22 +11,22 @@ class VertexArray
 {
 public:
     VertexArray(const float* verts, unsigned int numVerts,
-                const unsigned int* indices, unsigned int numIndices);
+        const unsigned int* indices, unsigned int numIndices);
     ~VertexArray();
-    
+
     void SetActive();
     unsigned int GetNumIndices() const { return mNumIndices; }
     unsigned int GetNumVerts() const { return mNumVerts; }
-
 private:
-    // how many vertices in the vertex buffer
+    // How many vertices in the vertex buffer?
     unsigned int mNumVerts;
-    // how many indices in the index buffer
+    // How many indices in the index buffer
     unsigned int mNumIndices;
-    // opengl id of the vertex buffer
+    // OpenGL ID of the vertex buffer
     unsigned int mVertexBuffer;
-    // opengl id of the index buffer
+    // OpenGL ID of the index buffer
     unsigned int mIndexBuffer;
-    // opengl id of the vertex array object
+    // OpenGL ID of the vertex array object
     unsigned int mVertexArray;
 };
+

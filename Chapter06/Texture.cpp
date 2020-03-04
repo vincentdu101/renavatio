@@ -31,13 +31,15 @@ bool Texture::Load(const std::string& fileName)
     unsigned char* image = SOIL_load_image(fileName.c_str(),
                                            &mWidth, &mHeight, &channels, SOIL_LOAD_AUTO);
     
-    if (image == nullptr) {
+    if (image == nullptr)
+    {
         SDL_Log("SOIL failed to load image %s: %s", fileName.c_str(), SOIL_last_result());
         return false;
     }
     
     int format = GL_RGB;
-    if (channels == 4) {
+    if (channels == 4)
+    {
         format = GL_RGBA;
     }
     
@@ -49,7 +51,7 @@ bool Texture::Load(const std::string& fileName)
     
     SOIL_free_image_data(image);
     
-    // enable linear filtering
+    // Enable linear filtering
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     

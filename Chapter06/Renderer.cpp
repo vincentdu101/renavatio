@@ -275,7 +275,7 @@ void Renderer::CreateSpriteVerts() {
         2, 3, 0
     };
     
-    mSpriteVerts = new VertexArray(vertices, 4, indices, 0);
+    mSpriteVerts = new VertexArray(vertices, 4, indices, 6);
     
 }
 
