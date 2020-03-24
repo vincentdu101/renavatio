@@ -139,7 +139,8 @@ void Game::LoadData()
 {
 	// Create actors
 	Actor* a = new Actor(this);
-	a->SetPosition(Vector3(200.0f, 75.0f, 0.0f));
+    // y is left/right, z is up/down
+	a->SetPosition(Vector3(200.0f, 875.0f, 600.0f));
 	a->SetScale(100.0f);
 	Quaternion q(Vector3::UnitY, -Math::PiOver2);
 	q = Quaternion::Concatenate(q, Quaternion(Vector3::UnitZ, Math::Pi + Math::Pi / 4.0f));
@@ -197,6 +198,27 @@ void Game::LoadData()
 	dir.mDirection = Vector3(0.0f, -0.707f, -0.707f);
 	dir.mDiffuseColor = Vector3(0.78f, 0.88f, 1.0f);
 	dir.mSpecColor = Vector3(0.8f, 0.8f, 0.8f);
+    
+    PointLight* pointLights = mRenderer -> GetPointLights();
+    pointLights[0].mDirection = Vector3(0.0f, -0.707f, -0.707f);
+    pointLights[0].mDiffuseColor = Vector3(0.78f, 0.88f, 1.0f);
+    pointLights[0].mPosition = Vector3(0.0f, -0.707f, -0.707f);
+    pointLights[0].mSpecColor = Vector3(0.8f, 0.8f, 0.8f);
+    
+    pointLights[1].mDirection = Vector3(-100.0f, -200.0f, -0.707f);
+    pointLights[1].mDiffuseColor = Vector3(0.78f, 0.88f, 1.0f);
+    pointLights[1].mPosition = Vector3(200.0f, 875.0f, 600.0f);
+    pointLights[1].mSpecColor = Vector3(0.8f, 0.8f, 0.8f);
+    
+    pointLights[2].mDirection = Vector3(200.0f, -0.707f, -0.707f);
+    pointLights[2].mDiffuseColor = Vector3(0.78f, 0.88f, 1.0f);
+    pointLights[2].mPosition = Vector3(200.0f, -0.707f, -0.707f);
+    pointLights[2].mSpecColor = Vector3(0.8f, 0.8f, 0.8f);
+    
+    pointLights[3].mDirection = Vector3(300.0f, -0.707f, -0.707f);
+    pointLights[3].mDiffuseColor = Vector3(0.78f, 0.88f, 1.0f);
+    pointLights[3].mPosition = Vector3(300.0f, -0.707f, -0.707f);
+    pointLights[3].mSpecColor = Vector3(0.8f, 0.8f, 0.8f);
 
 	// Camera actor
 	mCameraActor = new CameraActor(this);

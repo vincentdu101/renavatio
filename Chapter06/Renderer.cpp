@@ -150,8 +150,6 @@ void Renderer::Draw() {
     basicMeshShader -> SetActive();
     basicMeshShader -> SetMatrixUniform("uViewProj", mView * mProjection);
     
-    // update lighting uniforms
-    SetLightUniforms(basicMeshShader);
     for (auto mc : mMeshComps) {
         mc -> Draw(basicMeshShader, "BasicMesh");
     }
@@ -315,6 +313,29 @@ void Renderer::SetLightUniforms(Shader* shader) {
     shader -> SetVectorUniform("uDirLight.mDirection", mDirLight.mDirection);
     shader -> SetVectorUniform("uDirLight.mDiffuseColor", mDirLight.mDiffuseColor);
     shader -> SetVectorUniform("uDirLight.mSpecColor", mDirLight.mSpecColor);
+    
+    // point light
+    shader -> SetVectorUniform("uPointLights[0].mDirection", mPointLights[0].mDirection);
+    shader -> SetVectorUniform("uPointLights[0].mDiffuseColor", mPointLights[0].mDiffuseColor);
+    shader -> SetVectorUniform("uPointLights[0].mSpecColor", mPointLights[0].mSpecColor);
+    shader -> SetVectorUniform("uPointLights[0].mPosition", mPointLights[0].mPosition);
+    
+    shader -> SetVectorUniform("uPointLights[1].mDirection", mPointLights[1].mDirection);
+    shader -> SetVectorUniform("uPointLights[1].mDiffuseColor", mPointLights[1].mDiffuseColor);
+    shader -> SetVectorUniform("uPointLights[1].mSpecColor", mPointLights[1].mSpecColor);
+    shader -> SetVectorUniform("uPointLights[1].mPosition", mPointLights[1].mPosition);
+    
+    shader -> SetVectorUniform("uPointLights[2].mDirection", mPointLights[2].mDirection);
+    shader -> SetVectorUniform("uPointLights[2].mDiffuseColor", mPointLights[2].mDiffuseColor);
+    shader -> SetVectorUniform("uPointLights[2].mSpecColor", mPointLights[2].mSpecColor);
+    shader -> SetVectorUniform("uPointLights[2].mPosition", mPointLights[2].mPosition);
+    
+    shader -> SetVectorUniform("uPointLights[3].mDirection", mPointLights[3].mDirection);
+    shader -> SetVectorUniform("uPointLights[3].mDiffuseColor", mPointLights[3].mDiffuseColor);
+    shader -> SetVectorUniform("uPointLights[3].mSpecColor", mPointLights[3].mSpecColor);
+    shader -> SetVectorUniform("uPointLights[3].mPosition", mPointLights[3].mPosition);
+    
+    shader -> SetFloatUniform("uPointLightsRadius", mPointLightsRadius);
 }
 
 

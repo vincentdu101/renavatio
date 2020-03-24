@@ -30,6 +30,22 @@ struct DirectionalLight
     vec3 mSpecColor;
 };
 
+// create a struct for point light
+struct PointLight
+{
+    // direction of light
+    vec3 mDirection;
+    
+    // diffuse color
+    vec3 mDiffuseColor;
+    
+    // specular color
+    vec3 mSpecColor;
+    
+    // position of light
+    vec3 mPosition;
+};
+
 // uniforms for lighting
 // camera position in world space
 uniform vec3 uCameraPos;
@@ -42,6 +58,11 @@ uniform vec3 uAmbientLight;
 
 // directional light
 uniform DirectionalLight uDirLight;
+
+// point lights
+uniform PointLight uPointLights[4];
+
+uniform float uPointLightsRadius;
 
 void main()
 {
@@ -57,10 +78,33 @@ void main()
     // compute phong reflection
     vec3 Phong = uAmbientLight;
     float NdotL = dot(N, L);
+    float specPower = pow(max(0.0, dot(R, V)), uSpecPower);
+    
     if (NdotL > 0) {
         vec3 Diffuse = uDirLight.mDiffuseColor * NdotL;
-        vec3 Specular = uDirLight.mSpecColor * pow(max(0.0, dot(R, V)), uSpecPower);
+        vec3 Specular = uDirLight.mSpecColor * specPower;
         Phong += Diffuse + Specular;
+    }
+    
+    // compute point light effect if the object is in the radius of the
+    // light
+    for (int i = 0; i < uPointLights.length(); i++) {
+        PointLight light = uPointLights[i];
+        bool xClose = light.mPosition.x - fragNormal.x < uPointLightsRadius;
+        bool yClose = light.mPosition.y - fragNormal.y < uPointLightsRadius;
+        bool zClose = light.mPosition.z - fragNormal.z < uPointLightsRadius;
+
+        if (xClose && yClose && zClose) {
+            vec3 PL = normalize(-light.mDirection);
+            vec3 PR = normalize(reflect(-PL, N));
+            float NdotPL = dot(N, PL);
+            
+            if (NdotPL > 0) {
+                vec3 pointDiffuse = light.mDiffuseColor * NdotPL;
+                vec3 pointSpecular = light.mSpecColor * specPower;
+                Phong += pointDiffuse + pointSpecular;
+            }
+        }
     }
     
     // final color is texture color times phong light (alpha = 1)
