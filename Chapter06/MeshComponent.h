@@ -9,6 +9,7 @@
 #pragma once
 #include "Component.h"
 #include <cstddef>
+#include <string>
 
 class MeshComponent : public Component
 {
@@ -17,7 +18,7 @@ public:
     ~MeshComponent();
     
     // draw this mesh component
-    virtual void Draw(class Shader* shader);
+    virtual void Draw(class Shader* shader, std::string shaderName);
     
     // set the mesh/texture index used by mesh component
     virtual void SetMesh(class Mesh* mesh) { mMesh = mesh; }

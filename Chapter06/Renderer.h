@@ -74,6 +74,8 @@ private:
     class Shader* mSpriteShader;
     // Sprite vertex array
     class VertexArray* mSpriteVerts;
+    
+    std::unordered_map<std::string, class Shader*> mShaderMap;
 
     // Mesh shader
     class Shader* mMeshShader;

@@ -14,6 +14,7 @@
 #include "Renderer.h"
 #include "Texture.h"
 #include "VertexArray.h"
+#include <string>
 
 MeshComponent::MeshComponent(Actor* owner)
     :Component(owner)
@@ -28,9 +29,9 @@ MeshComponent::~MeshComponent()
     mOwner -> GetGame() -> GetRenderer() -> RemoveMeshComp(this);
 }
 
-void MeshComponent::Draw(Shader* shader)
+void MeshComponent::Draw(Shader* shader, std::string shaderName)
 {
-    if (mMesh)
+    if (mMesh && mMesh -> GetShaderName() == shaderName)
     {
         // set the world transform
         shader -> SetMatrixUniform("uWorldTransform",
