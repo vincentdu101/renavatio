@@ -12,7 +12,7 @@
 #include "AudioSystem.h"
 
 AudioComponent::AudioComponent(Actor* owner, int updateOrder)
-    :Component(owner, updateOwner)
+    :Component(owner, updateOrder)
 {
 }
 

@@ -21,7 +21,7 @@ AudioSystem::AudioSystem(Game* game)
 {
 }
 
-bool AudioSystem::~AudioSystem()
+AudioSystem::~AudioSystem()
 {
 }
 
@@ -98,7 +98,7 @@ void AudioSystem::LoadBank(const std::string& name)
                                                  // file name of bank
                                                  name.c_str(),
                                                  // normal loading
-                                                 FMOD_STUDIO_LOAD_BANK_NORMAL
+                                                 FMOD_STUDIO_LOAD_BANK_NORMAL,
                                                  // save pointer to bank
                                                  &bank
                                                  );
@@ -132,7 +132,7 @@ void AudioSystem::LoadBank(const std::string& name)
         // get the number of buses in this bank
         int numBuses = 0;
         bank -> getBusCount(&numBuses);
-        if (numBuses  0)
+        if (numBuses > 0)
         {
             // get list of buses in this bank
             std::vector<FMOD::Studio::Bus*> buses(numBuses);
@@ -249,7 +249,7 @@ SoundEvent AudioSystem::PlayEvent(const std::string& name)
     return SoundEvent(this, retID);
 }
 
-void AudioSystem::Update(final deltaTime)
+void AudioSystem::Update(float deltaTime)
 {
     // find any stopped event instances
     std::vector<unsigned int> done;

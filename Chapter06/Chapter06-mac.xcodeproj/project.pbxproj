@@ -16,6 +16,7 @@
 		9223C4951F0CA766009A94D7 /* CircleComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9223C4911F0CA766009A94D7 /* CircleComponent.cpp */; };
 		92D324FB1B697389005A86C7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D324FA1B697389005A86C7 /* CoreFoundation.framework */; };
 		92E46E941B6353E50035CD21 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E46E931B6353E50035CD21 /* OpenGL.framework */; };
+		B39E83422437D3CD007271B3 /* SoundEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39E83412437D3CD007271B3 /* SoundEvent.cpp */; };
 		B3A78D3323FE5A6F0011D3B9 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A78D3223FE5A6F0011D3B9 /* Renderer.cpp */; };
 		B3A78D362405835F0011D3B9 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A78D352405835F0011D3B9 /* Shader.cpp */; };
 		B3A78D3924058B040011D3B9 /* SpriteComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A78D3824058B040011D3B9 /* SpriteComponent.cpp */; };
@@ -47,6 +48,8 @@
 		92D324FA1B697389005A86C7 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		92E46DF71B634EA30035CD21 /* Game-mac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Game-mac"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92E46E931B6353E50035CD21 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		B39E83412437D3CD007271B3 /* SoundEvent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SoundEvent.cpp; sourceTree = "<group>"; };
+		B39E83432437D3DE007271B3 /* SoundEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SoundEvent.h; sourceTree = "<group>"; };
 		B3A78D3223FE5A6F0011D3B9 /* Renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
 		B3A78D3423FE5AAE0011D3B9 /* Renderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
 		B3A78D352405835F0011D3B9 /* Shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
@@ -87,6 +90,8 @@
 		92E46DEE1B634EA30035CD21 = {
 			isa = PBXGroup;
 			children = (
+				B39E83432437D3DE007271B3 /* SoundEvent.h */,
+				B39E83412437D3CD007271B3 /* SoundEvent.cpp */,
 				B3C5B559242FEED300CD6E5B /* AudioSystem.h */,
 				B3C5B557242FEEC700CD6E5B /* AudioSystem.cpp */,
 				B3C5B556242FEAF500CD6E5B /* AudioComponent.h */,
@@ -201,7 +206,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -d \"$BUILD_DIR/Debug\" ]; then\n    cp \"$SRCROOT\"/../external/GLEW/lib/mac/*.dylib $BUILD_DIR/Debug\n    cp \"$SRCROOT\"/../external/SDL/lib/mac/*.dylib $BUILD_DIR/Debug\nfi\n\nif [ -d \"$BUILD_DIR/Release\" ]; then\n    cp \"$SRCROOT\"/../external/GLEW/lib/mac/*.dylib $BUILD_DIR/Release\n    cp \"$SRCROOT\"/../external/SDL/lib/mac/*.dylib $BUILD_DIR/Release\nfi";
+			shellScript = "if [ -d \"$BUILD_DIR/Debug\" ]; then\n    cp \"$SRCROOT\"/../external/GLEW/lib/mac/*.dylib $BUILD_DIR/Debug\n    cp \"$SRCROOT\"/../external/SDL/lib/mac/*.dylib $BUILD_DIR/Debug\n    cp \"$SRCROOT\"/../external/FMOD/\"FMOD Programmers API\"/api/lowlevel/lib/*.dylib $BUILD_DIR/Debug\n    cp \"$SRCROOT\"/../external/FMOD/\"FMOD Programmers API\"/api/studio/lib/*.dylib $BUILD_DIR/Debug\nfi\n\nif [ -d \"$BUILD_DIR/Release\" ]; then\n    cp \"$SRCROOT\"/../external/GLEW/lib/mac/*.dylib $BUILD_DIR/Release\n    cp \"$SRCROOT\"/../external/SDL/lib/mac/*.dylib $BUILD_DIR/Release\n    cp \"$SRCROOT\"/../external/FMOD/\"FMOD Programmers API\"/api/lowlevel/lib/*.dylib $BUILD_DIR/Release\n    cp \"$SRCROOT\"/../external/FMOD/\"FMOD Programmers API\"/api/studio/lib/*.dylib $BUILD_DIR/Release\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -226,6 +231,7 @@
 				9223C4791F009428009A94D7 /* Actor.cpp in Sources */,
 				B3A78D3F2406D5AE0011D3B9 /* VertexArray.cpp in Sources */,
 				9223C4951F0CA766009A94D7 /* CircleComponent.cpp in Sources */,
+				B39E83422437D3CD007271B3 /* SoundEvent.cpp in Sources */,
 				9223C47C1F009428009A94D7 /* Component.cpp in Sources */,
 				B3C5B558242FEEC700CD6E5B /* AudioSystem.cpp in Sources */,
 			);
@@ -341,11 +347,15 @@
 					"$(SRCROOT)/../external/GLEW/include",
 					"$(SRCROOT)/../external/SOIL/include",
 					"$(SRCROOT)/../external/rapidjson/include",
+					"$(SRCROOT)/../external/FMOD/\"FMOD Programmers API\"/api/lowlevel/inc",
+					"$(SRCROOT)/../external/FMOD/\"FMOD Programmers API\"/api/studio/inc",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(SRCROOT)/../external/GLEW/lib/mac",
 					"$(SRCROOT)/../external/SDL/lib/mac",
 					"$(SRCROOT)/../external/SOIL/lib/mac",
+					"$(SRCROOT)/../external/FMOD/\"FMOD Programmers API\"/api/lowlevel/lib",
+					"$(SRCROOT)/../external/FMOD/\"FMOD Programmers API\"/api/studio/lib",
 				);
 				OTHER_LDFLAGS = (
 					"-lGLEW.2.1.0",
@@ -354,6 +364,8 @@
 					"-lSDL2_ttf-2.0.0",
 					"-lSOIL",
 					"-lSDL2_image-2.0.0",
+					"-lfmodstudioL",
+					"-lfmodL",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -372,11 +384,15 @@
 					"$(SRCROOT)/../external/GLEW/include",
 					"$(SRCROOT)/../external/SOIL/include",
 					"$(SRCROOT)/../external/rapidjson/include",
+					"$(SRCROOT)/../external/FMOD/\"FMOD Programmers API\"/api/lowlevel/inc",
+					"$(SRCROOT)/../external/FMOD/\"FMOD Programmers API\"/api/studio/inc",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(SRCROOT)/../external/GLEW/lib/mac",
 					"$(SRCROOT)/../external/SDL/lib/mac",
 					"$(SRCROOT)/../external/SOIL/lib/mac",
+					"$(SRCROOT)/../external/FMOD/\"FMOD Programmers API\"/api/lowlevel/lib",
+					"$(SRCROOT)/../external/FMOD/\"FMOD Programmers API\"/api/studio/lib",
 				);
 				OTHER_LDFLAGS = (
 					"-lGLEW.2.1.0",
@@ -385,6 +401,8 @@
 					"-lSDL2_ttf-2.0.0",
 					"-lSOIL",
 					"-lSDL2_image-2.0.0",
+					"-lfmodstudioL",
+					"-lfmodL",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

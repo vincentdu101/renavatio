@@ -14,6 +14,9 @@
 #include "MeshComponent.h"
 #include "CameraActor.h"
 #include "PlaneActor.h"
+#include "AudioComponent.h"
+#include "AudioSystem.h"
+
 
 Game::Game()
 :mRenderer(nullptr)
@@ -40,6 +43,18 @@ bool Game::Initialize()
 		mRenderer = nullptr;
 		return false;
 	}
+    
+    // create the audio system
+    mAudioSystem = new AudioSystem(this);
+    if (!mAudioSystem -> Initialize())
+    {
+        SDL_Log("failed to initialize audio system");
+        mAudioSystem -> Shutdown();
+        delete mAudioSystem;
+        mAudioSystem = nullptr;
+        return false;
+        
+    }
 
 	LoadData();
 
@@ -68,6 +83,15 @@ void Game::ProcessInput()
 			case SDL_QUIT:
 				mIsRunning = false;
 				break;
+            // this fires when a key's initially pressed
+            case SDL_KEYDOWN:
+                if (!event.key.repeat)
+                {
+                    HandleKeyPress(event.key.keysym.sym);
+                }
+                break;
+            default:
+                break;
 		}
 	}
 	
@@ -81,6 +105,58 @@ void Game::ProcessInput()
 	{
 		actor->ProcessInput(state);
 	}
+}
+
+void Game::HandleKeyPress(int key)
+{
+    switch(key)
+    {
+        case '-':
+        {
+            // reduce master volume
+            float volume = mAudioSystem -> GetBusVolume("bus:/");
+            volume = Math::Max(0.0f, volume - 0.1f);
+            mAudioSystem -> SetBusVolume("bus:/", volume);
+            break;
+        }
+        case '=':
+        {
+            // increase master volume
+            float volume = mAudioSystem -> GetBusVolume("bus:/");
+            volume = Math::Min(1.0f, volume + 0.1f);
+            mAudioSystem -> SetBusVolume("bus:/", volume);
+            break;
+        }
+        case 'e':
+            // play explosion
+            mAudioSystem -> PlayEvent("event:/Explosion2D");
+            break;
+        case 'm':
+            // toggle music pause state
+            mMusicEvent.SetPaused(!mMusicEvent.GetPaused());
+            break;
+        case 'r':
+            // stop or start reverb snapshot
+            if (!mReverbSnap.IsValid())
+            {
+                mReverbSnap = mAudioSystem -> PlayEvent("snapshot:/WithReverb");
+            }
+            else
+            {
+                mReverbSnap.Stop();
+            }
+            break;
+        case '1':
+            // set default footstep surface
+            mCameraActor -> SetFootstepSurface(0.0f);
+            break;
+        case '2':
+            // set grass footstep surface
+            mCameraActor -> SetFootstepSurface(0.5f);
+            break;
+        default:
+            break;
+    }
 }
 
 void Game::UpdateGame()
@@ -128,6 +204,9 @@ void Game::UpdateGame()
 	{
 		delete actor;
 	}
+    
+    // update audio system
+    mAudioSystem -> Update(deltaTime);
 }
 
 void Game::GenerateOutput()
@@ -234,6 +313,12 @@ void Game::LoadData()
 	a->SetScale(0.75f);
 	sc = new SpriteComponent(a);
 	sc->SetTexture(mRenderer->GetTexture("Assets/Radar.png"));
+    
+    AudioComponent* ac = new AudioComponent(a);
+    ac -> PlayEvent("event:/FireLoop");
+    
+    // start music
+    mMusicEvent = mAudioSystem -> PlayEvent("event:/Music");
 }
 
 void Game::UnloadData()

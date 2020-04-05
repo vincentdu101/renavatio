@@ -12,6 +12,7 @@
 #include <string>
 #include <vector>
 #include "Math.h"
+#include "AudioSystem.h"
 
 class Game
 {
@@ -25,8 +26,10 @@ public:
 	void RemoveActor(class Actor* actor);
 
 	class Renderer* GetRenderer() { return mRenderer; }
+    class AudioSystem* GetAudioSystem() { return mAudioSystem; }
 private:
 	void ProcessInput();
+    void HandleKeyPress(int key);
 	void UpdateGame();
 	void GenerateOutput();
 	void LoadData();
@@ -38,6 +41,7 @@ private:
 	std::vector<class Actor*> mPendingActors;
 
 	class Renderer* mRenderer;
+    class AudioSystem* mAudioSystem;
 
 	Uint32 mTicksCount;
 	bool mIsRunning;
@@ -46,4 +50,6 @@ private:
 
 	// Game-specific code
 	class CameraActor* mCameraActor;
+    SoundEvent mMusicEvent;
+    SoundEvent mReverbSnap;
 };
